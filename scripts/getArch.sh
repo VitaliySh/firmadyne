@@ -58,9 +58,7 @@ IID=${BASE%.tar.gz}
 mkdir -p "/tmp/${IID}"
 
 set +e
-FILES="$(tar -tf $INFILE | grep -e "/busybox\$") "
-FILES+="$(tar -tf $INFILE | grep -E "/sbin/[[:alpha:]]+")"
-FILES+="$(tar -tf $INFILE | grep -E "/bin/[[:alpha:]]+")"
+FILES="$(tar -tf $INFILE | grep -E "/busybox\$|/sbin/[[:alpha:]]+|/bin/[[:alpha:]]+") "
 set -e
 
 for TARGET in ${FILES}
